@@ -33,20 +33,16 @@ func TestAccLoadBalancerBasic(t *testing.T) {
 					resource.TestCheckResourceAttr("clc_load_balancer.acc_test_lb", "status", "enabled"),
 				),
 			},
-
-			/*
-				// FIXME: cant'r figure out why this is throwing "Not Found"
-				// update simple attrs
-				resource.TestStep{
-					Config: testAccCheckLBConfigNameDesc,
-					Check: resource.ComposeTestCheckFunc(
-						testAccCheckLBExists("clc_load_balancer.acc_test_lb", &resp),
-						resource.TestCheckResourceAttr("clc_load_balancher.acc_test_lb", "name", "foobar"),
-						resource.TestCheckResourceAttr("clc_load_balancher.acc_test_lb", "description", "foobar"),
-						resource.TestCheckResourceAttr("clc_load_balancher.acc_test_lb", "status", "disabled"),
-					),
-				},
-			*/
+			// update simple attrs
+			resource.TestStep{
+				Config: testAccCheckLBConfigNameDesc,
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckLBExists("clc_load_balancer.acc_test_lb", &resp),
+					resource.TestCheckResourceAttr("clc_load_balancer.acc_test_lb", "name", "foobar"),
+					resource.TestCheckResourceAttr("clc_load_balancer.acc_test_lb", "description", "foobar"),
+					resource.TestCheckResourceAttr("clc_load_balancer.acc_test_lb", "status", "disabled"),
+				),
+			},
 		},
 	})
 }
