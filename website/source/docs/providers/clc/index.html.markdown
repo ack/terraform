@@ -34,6 +34,17 @@ resource "clc_server" "node" {
 }
 ```
 
+
+## Account Bootstrap
+
+Trial accounts are available by signing up on the control portal [https://control.ctl.io](https://control.ctl.io).
+
+For new accounts, you should initially run these steps manually:
+
+- [Create a network.](https://control.ctl.io/Network/network)
+- [Provision a server.](https://control.ctl.io/create)
+
+
 ## Argument Reference
 
 The following arguments are supported:
