@@ -131,6 +131,7 @@ func resourceCLCServerCreate(d *schema.ResourceData, meta interface{}) error {
 		SourceServerID: d.Get("source_server_id").(string),
 		Type:           d.Get("type").(string),
 		IPaddress:      d.Get("private_ip_address").(string),
+		NetworkID:      d.Get("network_id").(string),
 		Storagetype:    d.Get("storage_type").(string),
 	}
 

@@ -71,6 +71,18 @@ func TestAccServerBasic(t *testing.T) {
 				),
 			},
 			*/
+			/* // broken since network id is a (account-specific) guid
+			// set network id
+			resource.TestStep{
+				Config: testAccCheckServerConfigNetwork,
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckServerExists("clc_server.acc_test_server", &resp),
+					resource.TestCheckResourceAttr(
+						"clc_server.acc_test_server", "network_id", "15a0f669c332435ebf375e010ac79fbb"),
+					testAccCheckServerUpdatedSpec("clc_server.acc_test_server", &resp),
+				),
+			},
+			*/
 		},
 	})
 }
@@ -232,6 +244,7 @@ resource "clc_server" "acc_test_server" {
   memory_mb		= 2048
   password		= "Green123$"
   power_state		= "stopped"
+  # network_id = "15a0f669c332435ebf375e010ac79fbb"
   additional_disks
     {
       path = "/data1"
