@@ -34,7 +34,7 @@ output "group_id" {
 
 The following arguments are supported:
 
-* `name` - (Required, string) The name of this server group. Will resolve to existing if present. 
+* `name` - (Required, string) The name (or GUID) of this server group. Will resolve to existing if present.
 * `parent` - (Required, string) The name or ID of the parent group. Will error if absent or unable to resolve.
 * `location_id` - (Required, string) The datacenter location of both parent group and this group.
    Examples: "WA1", "VA1"

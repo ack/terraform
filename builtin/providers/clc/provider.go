@@ -100,13 +100,13 @@ func waitStatus(client *clc.Client, id string) error {
 	return nil
 }
 
-func dcGroups(dcname string, meta interface{}) (map[string]string, error) {
-	client := meta.(*clc.Client)
+func dcGroups(dcname string, client *clc.Client) (map[string]string, error) {
 	dc, _ := client.DC.Get(dcname)
 	_, id := dc.Links.GetID("group")
 	m := map[string]string{}
 	resp, _ := client.Group.Get(id)
 	m[resp.Name] = resp.ID // top
+	m[resp.ID] = resp.ID
 	for _, x := range resp.Groups {
 		deepGroups(x, &m)
 	}
@@ -115,9 +115,23 @@ func dcGroups(dcname string, meta interface{}) (map[string]string, error) {
 
 func deepGroups(g group.Groups, m *map[string]string) {
 	(*m)[g.Name] = g.ID
+	(*m)[g.ID] = g.ID
 	for _, sg := range g.Groups {
 		deepGroups(sg, m)
 	}
+}
+
+// resolveGroupByNameOrId takes a reference to a group (either name or guid)
+// and returns the guid of the group
+func resolveGroupByNameOrId(ref, dc string, client *clc.Client) (string, error) {
+	m, err := dcGroups(dc, client)
+	if err != nil {
+		return "", fmt.Errorf("Failed pulling groups in location %v - %v", dc, err)
+	}
+	if id, ok := m[ref]; ok {
+		return id, nil
+	}
+	return "", fmt.Errorf("Failed resolving group '%v' in location %v", ref, dc)
 }
 
 func stateFromString(st string) server.PowerState {
