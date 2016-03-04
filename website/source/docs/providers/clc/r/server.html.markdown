@@ -61,7 +61,10 @@ The following arguments are supported:
 * `power_state` - (Optional, string) See [PowerStates](#power_states) below for details.
   If absent, defaults to `started`.
 * `private_ip_address` - (Optional, string) Set internal IP address. If absent, allocated and assigned from pool.
-* `network_id` - (Optional, string) ID of network to use. (Must be set up in advance from control portal)
+* `network_id` - (Optional, string) GUID of network to use. (Must be set up in advance from control portal.)
+  When absent, the default network will be used.
+* `storage_type` - (Optional, string) Backup and replication strategy for disks. 
+  One of "standard", "premium"
 * `additional_disks` - (Optional) See [Disks](#disks) below for details. 
 * `custom_fields` - (Optional) See [CustomFields](#custom_fields) below for details.
 
