@@ -66,6 +66,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	if config_err != nil {
 		return nil, fmt.Errorf("Failed to create CLC config with provided details: %v", config_err)
 	}
+	config.UserAgent = "terraform-clc"
 
 	client := clc.New(config)
 	err := client.Authenticate()
