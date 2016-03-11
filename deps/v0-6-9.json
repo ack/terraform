@@ -61,7 +61,7 @@
 		},
 		{
 			"ImportPath": "github.com/CenturyLinkCloud/clc-sdk",
-			"Rev": "ff312273e3bb8a5946e1517929b9ec12b30f009b"
+			"Rev": "74abd779894192c559ad29f0183a1716370490ad"
 		},
 		{
 			"ImportPath": "github.com/apparentlymart/go-cidr/cidr",

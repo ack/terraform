@@ -133,7 +133,7 @@ func resourceCLCGroupUpdate(d *schema.ResourceData, meta interface{}) error {
 	if len(patches) == 0 {
 		return nil
 	}
-	_, err = client.Group.Update(id, patches...)
+	err = client.Group.Update(id, patches...)
 	if err != nil {
 		return fmt.Errorf("Failed updating group %v: %v", id, err)
 	}
